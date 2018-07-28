@@ -1,0 +1,130 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "demo gateway",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "LightsToggle",
+                    "slots": [
+                        {
+                            "name": "component",
+                            "type": "COMPONENT"
+                        },
+                        {
+                            "name": "mod",
+                            "type": "MOD"
+                        }
+                    ],
+                    "samples": [
+                        "to turn the {component} {mod}",
+                        "to turn {mod} the {component}",
+                        "to make the {component} {mod}",
+                        "to make {mod} the {component}",
+                        "turn {mod} the {component}",
+                        "{mod}",
+                        "turn the {component} {mod}",
+                        "turn {mod}"
+                    ]
+                },
+                {
+                    "name": "IsStillLovingMe",
+                    "slots": [
+                        {
+                            "name": "Bogdan",
+                            "type": "NAME"
+                        }
+                    ],
+                    "samples": [
+                        "is {Bogdan} still in love",
+                        "does {Bogdan} love me",
+                        "is {Bogdan} still loving me",
+                        "is {Bogdan} loving me"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "COMPONENT",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "leds"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "lights"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "light"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "led"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "MOD",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "off"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "on"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "NAME",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Bumbu"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ba Pula"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "B"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Bogdan"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
