@@ -56,6 +56,13 @@
                         "is {Bogdan} still loving me",
                         "is {Bogdan} loving me"
                     ]
+                },
+                {
+                    "name": "Alert",
+                    "slots": [],
+                    "samples": [
+                        "to send alert"
+                    ]
                 }
             ],
             "types": [

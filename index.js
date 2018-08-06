@@ -13,7 +13,7 @@ const Alexa = require('alexa-sdk');
 const http = require('https');
 
 
-var options = {
+var options1 = {
     "method": "POST",
     "hostname": "238c66c7e26578d7a2579136eefaa0ad.resindevice.io",
     "port": null,
@@ -24,6 +24,16 @@ var options = {
     }
 };
 
+var options2 = {
+    "method": "GET",
+    "hostname": "238c66c7e26578d7a2579136eefaa0ad.resindevice.io",
+    "port": null,
+    "path": "/device/2",
+    "headers": {
+        "cache-control": "no-cache",
+        "postman-token": "d18672ea-ce25-5e3a-3408-9d054f93f179"
+  }
+};
 
 
 // Handler field index.handler
@@ -35,9 +45,29 @@ const handlers = {
     'IsStillLovingMe': function (){
         this.emit(':tell', 'Yes, Mara  he will love you forever!')
     },
+    'Alert': function () {
+        // This is triggered when users say "alexa, ask demo gateway to alert car"
+        var req = http.request(options2, function (res) {
+            var chunks = [];
+
+            res.on("data", function (chunk) {
+                chunks.push(chunk);
+            });
+
+            res.on("end", function () {
+                var body = Buffer.concat(chunks);
+                console.log(body.toString());
+            });
+        });
+
+        req.end();
+
+
+        this.emit(':tell', 'Ok')
+    },
     'LightsToggle': function () {
         // This is triggered when users say "alexa, ask demo gateway  to turn the light on"
-        var req = http.request(options, function (res) {
+        var req = http.request(options2, function (res) {
             var chunks = [];
 
             res.on("data", function (chunk) {
