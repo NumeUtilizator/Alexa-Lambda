@@ -1,13 +1,3 @@
-/* eslint-disable  func-names */
-/* eslint quote-props: ["error", "consistent"]*/
-/**
- * This sample demonstrates a simple skill built with the Amazon Alexa Skills
- * nodejs skill development kit.
- * This sample supports multiple lauguages. (en-US, en-GB, de-DE).
- * The Intent Schema, Custom Slots and Sample Utterances for this skill, as well
- * as testing instructions are located at https://github.com/alexa/skill-sample-nodejs-fact
- **/
-
 'use strict';
 const Alexa = require('alexa-sdk');
 const http = require('https');
@@ -19,8 +9,7 @@ var options1 = {
     "port": null,
     "path": "/lights/status",
     "headers": {
-        "cache-control": "no-cache",
-        "postman-token": "fe3c0b51-ddb1-c8e3-8168-2ba5145c2ff7"
+        "cache-control": "no-cache"
     }
 };
 
@@ -30,9 +19,8 @@ var options2 = {
     "port": null,
     "path": "/device/2",
     "headers": {
-        "cache-control": "no-cache",
-        "postman-token": "d18672ea-ce25-5e3a-3408-9d054f93f179"
-  }
+        "cache-control": "no-cache"
+    }
 };
 
 
@@ -40,10 +28,9 @@ var options2 = {
 const handlers = {
     'LaunchRequest': function () {
         // This is triggered when users say "alexa, open gateway demo"
-        this.emit(':ask', 'Welcome to Gateway Demo, would you like to control the led on raspberry Pi?')
-    },
-    'IsStillLovingMe': function (){
-        this.emit(':tell', 'Yes, Mara  he will love you forever!')
+        this.emit(':tell', 'Welcome to Demo Gateway, you can say something like Alexa ask demo gateway to turn on the light')
+        //this.emit(':tell', 'You can say something like Alexa ask demo gateway to turn on the light')
+
     },
     'Alert': function () {
         // This is triggered when users say "alexa, ask demo gateway to alert car"
@@ -67,7 +54,7 @@ const handlers = {
     },
     'LightsToggle': function () {
         // This is triggered when users say "alexa, ask demo gateway  to turn the light on"
-        var req = http.request(options2, function (res) {
+        var req = http.request(options1, function (res) {
             var chunks = [];
 
             res.on("data", function (chunk) {

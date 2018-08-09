@@ -43,24 +43,11 @@
                     ]
                 },
                 {
-                    "name": "IsStillLovingMe",
-                    "slots": [
-                        {
-                            "name": "Bogdan",
-                            "type": "NAME"
-                        }
-                    ],
-                    "samples": [
-                        "is {Bogdan} still in love",
-                        "does {Bogdan} love me",
-                        "is {Bogdan} still loving me",
-                        "is {Bogdan} loving me"
-                    ]
-                },
-                {
                     "name": "Alert",
                     "slots": [],
                     "samples": [
+                        "to alert the car",
+                        "to alert car",
                         "to send alert"
                     ]
                 }
@@ -102,31 +89,6 @@
                         {
                             "name": {
                                 "value": "on"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "NAME",
-                    "values": [
-                        {
-                            "name": {
-                                "value": "Bumbu"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "ba Pula"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "B"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "Bogdan"
                             }
                         }
                     ]
