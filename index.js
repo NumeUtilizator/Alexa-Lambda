@@ -1,9 +1,10 @@
+
 'use strict';
 const Alexa = require('alexa-sdk');
 const http = require('https');
 
 
-var options1 = {
+var light = {
     "method": "POST",
     "hostname": "238c66c7e26578d7a2579136eefaa0ad.resindevice.io",
     "port": null,
@@ -13,7 +14,7 @@ var options1 = {
     }
 };
 
-var options2 = {
+var alertOn = {
     "method": "GET",
     "hostname": "238c66c7e26578d7a2579136eefaa0ad.resindevice.io",
     "port": null,
@@ -23,18 +24,26 @@ var options2 = {
     }
 };
 
+var alertOff = {
+    "method": "GET",
+    "hostname": "238c66c7e26578d7a2579136eefaa0ad.resindevice.io",
+    "port": null,
+    "path": "/device/1",
+    "headers": {
+        "cache-control": "no-cache"
+    }
+};
+
 
 // Handler field index.handler
 const handlers = {
     'LaunchRequest': function () {
-        // This is triggered when users say "alexa, open gateway demo"
-        this.emit(':tell', 'Welcome to Demo Gateway, you can say something like Alexa ask demo gateway to turn on the light')
-        //this.emit(':tell', 'You can say something like Alexa ask demo gateway to turn on the light')
-
+        // This is triggered when users say "alexa, open demo car"
+        this.emit(':tell', 'I\'m sorry Bogdan, I\'m afraid I can\'t do that... Just joking with you, I\'m not HAL9000')
     },
-    'Alert': function () {
-        // This is triggered when users say "alexa, ask demo gateway to alert car"
-        var req = http.request(options2, function (res) {
+    'SendAlert': function () {
+        // This is triggered when users say "alexa, ask demo car to send alert"
+        var req = http.request(alertOn, function (res) {
             var chunks = [];
 
             res.on("data", function (chunk) {
@@ -50,11 +59,54 @@ const handlers = {
         req.end();
 
 
+        this.emit(':tell', 'Ok')
+    },
+    'RevokeAlert': function () {
+        // This is triggered when users say "alexa, ask demo car to cancel alert"
+        var req = http.request(alertOff, function (res) {
+            var chunks = [];
+
+            res.on("data", function (chunk) {
+                chunks.push(chunk);
+            });
+
+            res.on("end", function () {
+                var body = Buffer.concat(chunks);
+                console.log(body.toString());
+            });
+        });
+
+        req.end();
+
+
+        this.emit(':tell', 'Ok')
+    },
+    'CarLocate': function () {
+        // This is triggered when users say "alexa, ask demo car where is it"
+        let i = 0;
+        const iMax = 100;
+        for (; i < iMax; i++) {
+            var req = http.request(light, function (res) {
+                var chunks = [];
+
+                res.on("data", function (chunk) {
+                    chunks.push(chunk);
+                });
+
+                res.on("end", function () {
+                    var body = Buffer.concat(chunks);
+                    console.log(body.toString());
+                });
+            });
+
+            req.end();
+
+        }
         this.emit(':tell', 'Ok')
     },
     'LightsToggle': function () {
-        // This is triggered when users say "alexa, ask demo gateway  to turn the light on"
-        var req = http.request(options1, function (res) {
+        // This is triggered when users say "alexa, ask demo car  to turn the light on"
+        var req = http.request(light, function (res) {
             var chunks = [];
 
             res.on("data", function (chunk) {
@@ -71,6 +123,9 @@ const handlers = {
 
 
         this.emit(':tell', 'Ok')
+    },
+    'AMAZON.HelpIntent': function () {
+        // This is triggered when users say "Help"
 
         //this.response.speak('Hello').cardReader('Title', 'Body text')
         //this.emit(':responseReady')
@@ -79,9 +134,6 @@ const handlers = {
 
         //this.response.speak('How can I help?').listen('You can say something like turn on the led')
         //this.emit(':responseReady')
-    },
-    'AMAZON.HelpIntent': function () {
-        // This is triggered when users say "Help"
     },
     'AMAZON.CancelIntent': function () {
         // This is triggered when users say "Cancel"

@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "demo gateway",
+            "invocationName": "demo car",
             "intents": [
                 {
                     "name": "AMAZON.FallbackIntent",
@@ -43,12 +43,30 @@
                     ]
                 },
                 {
-                    "name": "Alert",
+                    "name": "SendAlert",
                     "slots": [],
                     "samples": [
-                        "to alert the car",
-                        "to alert car",
+                        "to send the alert",
+                        "alert",
+                        "to alert",
                         "to send alert"
+                    ]
+                },
+                {
+                    "name": "RevokeAlert",
+                    "slots": [],
+                    "samples": [
+                        "cancel alert",
+                        "to revoke alert",
+                        "to cancel the alert",
+                        "to cancel alert"
+                    ]
+                },
+                {
+                    "name": "CarLocate",
+                    "slots": [],
+                    "samples": [
+                        "where is it"
                     ]
                 }
             ],
